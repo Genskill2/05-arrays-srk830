@@ -2,32 +2,40 @@
 #include <assert.h>
 
 int min(int a[], int n) {
-  int min = a[0];
+  int MIN = a[0];
   for(int i = 1; i < n; i++) {
-    if(min > a[i]) min = a[i];
+    if(MIN > a[i]) MIN = a[i];
   }
-  return min;
+  return MIN;
 }
 
 int max(int a[], int n) {
-  int max = a[0];
+  int MAX = a[0];
   for(int i = 1; i < n; i++) {
-    if(max < a[i]) max = a[i];
+    if(MAX < a[i]) MAX = a[i];
   }
-  return max;
+  return MAX;
 }
 
 int mode(int a[], int n) {
-  int min = min(a, n);
-  int max = max(a, n);
-  int count[max-min+1];
-  for(int i = 0; i < max-min; i++) {
+  int MIN = min(a, n);
+  int MAX = max(a, n);
+  int l = MAX-MIN+1;
+  int count[l];
+  for(int i = 0; i < l; i++) {
     count[i] = 0;
   }
   for(int i = 0; i < n; i++) {
-    count[a[i]-min]++;
+    count[a[i]-MIN]++;
   }
-  return max(count, max-min+1)+min;
+  int pos = 0, temp = count[0];
+  for (int i = 1; i < l; i++) {
+    if(count[i] > temp) {
+      temp = count[i];
+      pos = i;
+    }
+  }
+  return pos+MIN;
 }
 
 int main(void) {
