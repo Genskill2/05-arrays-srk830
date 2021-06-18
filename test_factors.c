@@ -2,7 +2,22 @@
 #include <assert.h>
 
 
-int factors(int, int []);
+int factors(int n, int a[]) {
+  int k = 0;
+  while (n % 2 == 0) {
+    a[k] = 2; k++;
+    n = n/2;
+  }
+  for (int i = 3; i <= sqrt(n); i = i + 2) {
+    while (n % i == 0) {
+      a[k] = i; k++;
+      n = n/i;
+    }
+  }
+  if (n > 2)
+    a[k] = n;
+  return k+1;
+}
 
 int main(void) {
   int ret[100] = {0};
