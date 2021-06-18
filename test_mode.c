@@ -2,7 +2,7 @@
 #include <assert.h>
 
 
-int mode(int [], int );
+int mode(int [], int);
 
 int main(void) {
   int x[] = {4, 9,5,6,5,10,0,2,-3, -3,4, 4};
